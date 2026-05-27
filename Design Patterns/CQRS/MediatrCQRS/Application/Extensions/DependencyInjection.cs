@@ -1,6 +1,8 @@
 using System.Reflection;
+using Application.Behaviors;
 using Application.Common.Interfaces;
 using Infrastructure.Repositories;
+using MediatR;
 
 namespace Application.Extensions;
 
@@ -14,6 +16,11 @@ public static class DependencyInjection
             cfg.RegisterServicesFromAssembly(
             Assembly.GetExecutingAssembly());
         });
+
+        services.AddTransient(
+            typeof(IPipelineBehavior<,>),
+            typeof(LoggingBehavior<,>)
+        );
 
         return services;
     }

@@ -1,6 +1,7 @@
 using System.Reflection;
 using Application.Behaviors;
 using Application.Common.Interfaces;
+using FluentValidation;
 using Infrastructure.Repositories;
 using MediatR;
 
@@ -20,6 +21,13 @@ public static class DependencyInjection
         services.AddTransient(
             typeof(IPipelineBehavior<,>),
             typeof(LoggingBehavior<,>)
+        );
+
+        services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+
+        services.AddTransient(
+            typeof(IPipelineBehavior<,>),
+            typeof(ValidationBehavior<,>)
         );
 
         return services;

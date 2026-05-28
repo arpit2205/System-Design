@@ -22,6 +22,8 @@ if (app.Environment.IsDevelopment())
     app.MapScalarApiReference();
 }
 
+app.UseApplicationMiddleware();
+
 app.UseHttpsRedirection();
 
 app.Run();

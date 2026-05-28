@@ -13,6 +13,6 @@ public class CreateProductCommandValidator : AbstractValidator<CreateProductComm
 
         RuleFor(x => x.createProductDto.Price)
             .GreaterThan(0)
-            .WithMessage("Price msut be greater than zero");
+            .WithMessage("Price must be greater than zero");
     }
 }
